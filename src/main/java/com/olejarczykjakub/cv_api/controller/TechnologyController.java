@@ -4,12 +4,14 @@ import com.olejarczykjakub.cv_api.entity.Technology;
 import com.olejarczykjakub.cv_api.request.TechnologyAddRequest;
 import com.olejarczykjakub.cv_api.service.TechnologyService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/technology")
@@ -24,7 +26,7 @@ public class TechnologyController {
     val error = service.add(technologyName, technologyGroup, technologyLevel);
     return error.isEmpty()
       ? ResponseEntity.ok().body("The new technology was added!")
-      : ResponseEntity.badRequest().body("Failed to add new technology!");
+      : ResponseEntity.badRequest().body("Failed to add new technology: " + error);
   }
 
   @GetMapping("/get-all")

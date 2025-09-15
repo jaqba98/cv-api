@@ -16,13 +16,14 @@ public class TechnologyService {
   public String add(String technologyName, String technologyGroup, String technologyLevel) {
     try {
       val technologyExists = repository.findByTechnologyName(technologyName);
-      if (technologyExists.isEmpty()) {
+      if (technologyExists.isPresent()) {
         return "The technology already exists!";
       }
       val technology = new Technology();
       technology.setTechnologyName(technologyName);
       technology.setTechnologyGroup(technologyGroup);
       technology.setTechnologyLevel(technologyLevel);
+      System.out.println(technology.toString());
       repository.save(technology);
       return "";
     } catch (Exception e) {

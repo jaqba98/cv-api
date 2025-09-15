@@ -2,9 +2,11 @@ package com.olejarczykjakub.cv_api.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @Data
+@ToString
 public class Technology {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
