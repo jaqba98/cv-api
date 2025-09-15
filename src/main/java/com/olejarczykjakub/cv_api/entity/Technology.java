@@ -30,4 +30,11 @@ public class Technology {
     length = 50
   )
   private String technologyGroup;
+
+  @Column(
+    name = "technology_level",
+    nullable = false,
+    length = 10
+  )
+  private String technologyLevel;
 }

@@ -20,7 +20,8 @@ public class TechnologyController {
   public ResponseEntity<String> add(@RequestBody TechnologyAddRequest technology) {
     val technologyName = technology.technologyName();
     val technologyGroup = technology.technologyGroup();
-    val error = service.add(technologyName, technologyGroup);
+    val technologyLevel = technology.technologyLevel();
+    val error = service.add(technologyName, technologyGroup, technologyLevel);
     return error.isEmpty()
       ? ResponseEntity.ok().body("The new technology was added!")
       : ResponseEntity.badRequest().body("Failed to add new technology!");

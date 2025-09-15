@@ -13,11 +13,12 @@ import java.util.ArrayList;
 public class TechnologyService {
   private final TechnologyRepository repository;
 
-  public String add(String technologyName, String technologyGroup) {
+  public String add(String technologyName, String technologyGroup, String technologyLevel) {
     try {
       val technology = new Technology();
       technology.setTechnologyName(technologyName);
       technology.setTechnologyGroup(technologyGroup);
+      technology.setTechnologyLevel(technologyLevel);
       repository.save(technology);
       return "";
     } catch (Exception e) {
