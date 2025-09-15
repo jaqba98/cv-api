@@ -1,32 +1,33 @@
 package com.olejarczykjakub.cv_api.controller;
 
+import com.olejarczykjakub.cv_api.entity.Technology;
+import com.olejarczykjakub.cv_api.request.TechnologyAddRequest;
 import com.olejarczykjakub.cv_api.service.TechnologyService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.RequiredArgsConstructor;
+import lombok.val;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @RestController
+@RequiredArgsConstructor
+@RequestMapping("/technology")
 public class TechnologyController {
-    private final TechnologyService service;
+  private final TechnologyService service;
 
-    @Autowired
-    public TechnologyController(TechnologyService service) {
-        this.service = service;
-    }
+  @PostMapping("/add")
+  public ResponseEntity<String> add(@RequestBody TechnologyAddRequest technology) {
+    val technologyName = technology.technologyName();
+    val technologyGroup = technology.technologyGroup();
+    val error = service.add(technologyName, technologyGroup);
+    return error.isEmpty()
+      ? ResponseEntity.ok().body("The new technology was added!")
+      : ResponseEntity.badRequest().body("Failed to add new technology!");
+  }
 
-    @GetMapping("/add")
-    public String addTechnology(@RequestParam String technologyName, @RequestParam String technologyGroup) {
-        service.addTechnology(technologyName, technologyGroup);
-        return "The technology was added!";
-    }
-
-    @GetMapping("/get")
-    public String getTechnology() {
-        final String[] technologies = {""};
-        service.getTechnologies().forEach(technology -> {
-            technologies[0] += technology.getTechnologyName() + ", " + technology.getTechnologyGroup() + "\n";
-        });
-        return technologies[0];
-    }
+  @GetMapping("/get-all")
+  public ResponseEntity<ArrayList<Technology>> getAll() {
+    return ResponseEntity.ok().body(service.getAll());
+  }
 }

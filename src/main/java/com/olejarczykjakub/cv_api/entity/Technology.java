@@ -8,15 +8,26 @@ import lombok.Data;
 public class Technology {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  // todo: Set up the @Column here because now there is only name
-  @Column(name = "technology_id")
+  @Column(
+    name = "technology_id",
+    nullable = false,
+    unique = true,
+    updatable = false
+  )
   private Long technologyId;
 
-  // todo: Set up the @Column here because now there is only name
-  @Column(name = "technology_name")
+  @Column(
+    name = "technology_name",
+    nullable = false,
+    unique = true,
+    length = 50
+  )
   private String technologyName;
 
-  // todo: Set up the @Column here because now there is only name
-  @Column(name = "technology_group")
+  @Column(
+    name = "technology_group",
+    nullable = false,
+    length = 50
+  )
   private String technologyGroup;
 }
