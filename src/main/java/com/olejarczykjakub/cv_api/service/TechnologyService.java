@@ -15,6 +15,10 @@ public class TechnologyService {
 
   public String add(String technologyName, String technologyGroup, String technologyLevel) {
     try {
+      val technologyExists = repository.findByTechnologyName(technologyName);
+      if (technologyExists.isEmpty()) {
+        return "The technology already exists!";
+      }
       val technology = new Technology();
       technology.setTechnologyName(technologyName);
       technology.setTechnologyGroup(technologyGroup);
