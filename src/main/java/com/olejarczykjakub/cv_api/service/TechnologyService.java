@@ -1,37 +1,28 @@
 package com.olejarczykjakub.cv_api.service;
 
-import com.olejarczykjakub.cv_api.entity.Technology;
+import com.olejarczykjakub.cv_api.repository.TechnologyCategoryRepository;
+import com.olejarczykjakub.cv_api.repository.TechnologyGroupRepository;
 import com.olejarczykjakub.cv_api.repository.TechnologyRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-
 @Service
 @RequiredArgsConstructor
 public class TechnologyService {
-  private final TechnologyRepository repository;
+  private final TechnologyRepository technologyRepository;
+  private final TechnologyGroupRepository technologyGroupRepository;
+  private final TechnologyCategoryRepository technologyCategoryRepository;
 
-  public String add(String technologyName, String technologyGroup, String technologyLevel) {
-    try {
-      val technologyExists = repository.findByTechnologyName(technologyName);
-      if (technologyExists.isPresent()) {
-        return "The technology already exists!";
-      }
-      val technology = new Technology();
-      technology.setTechnologyName(technologyName);
-      technology.setTechnologyGroup(technologyGroup);
-      technology.setTechnologyLevel(technologyLevel);
-      System.out.println(technology.toString());
-      repository.save(technology);
-      return "";
-    } catch (Exception e) {
-      return e.getMessage();
-    }
-  }
-
-  public ArrayList<Technology> getAll() {
-    return (ArrayList<Technology>) repository.findAll();
+  public String getAll() {
+    val technologyGroup = technologyGroupRepository.findAll();
+    val technologyCategory = technologyCategoryRepository.findAll();
+    val technology = technologyRepository.findAll();
+    System.out.println(technologyGroup);
+    System.out.println();
+    System.out.println(technologyCategory);
+    System.out.println();
+    System.out.println(technology);
+    return "getAll()";
   }
 }
