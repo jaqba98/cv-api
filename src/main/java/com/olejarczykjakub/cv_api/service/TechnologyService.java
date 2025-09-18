@@ -1,6 +1,6 @@
 package com.olejarczykjakub.cv_api.service;
 
-import com.olejarczykjakub.cv_api.entity.TechnologyGroup;
+import com.olejarczykjakub.cv_api.entity.Technology;
 import com.olejarczykjakub.cv_api.repository.TechnologyCategoryRepository;
 import com.olejarczykjakub.cv_api.repository.TechnologyGroupRepository;
 import com.olejarczykjakub.cv_api.repository.TechnologyRepository;
@@ -17,10 +17,11 @@ public class TechnologyService {
   private final TechnologyGroupRepository technologyGroupRepository;
   private final TechnologyCategoryRepository technologyCategoryRepository;
 
-  public ArrayList<TechnologyGroup> getAll() {
+  public ArrayList<Technology> getAll() {
     val technologyGroup = technologyGroupRepository.findAll();
     val technologyCategory = technologyCategoryRepository.findAll();
     val technology = technologyRepository.findAll();
-    return (ArrayList<TechnologyGroup>) technologyGroup;
+    // todo: Add logic here
+    return (ArrayList<Technology>) technology;
   }
 }

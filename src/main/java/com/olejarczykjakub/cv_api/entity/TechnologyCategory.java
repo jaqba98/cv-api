@@ -20,7 +20,7 @@ public class TechnologyCategory {
   @Column(
     name = "technology_category_name",
     nullable = false,
-    length = 100
+    length = 50
   )
   private String technologyCategoryName;
 

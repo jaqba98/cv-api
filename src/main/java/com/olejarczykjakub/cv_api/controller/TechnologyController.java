@@ -1,6 +1,6 @@
 package com.olejarczykjakub.cv_api.controller;
 
-import com.olejarczykjakub.cv_api.entity.TechnologyGroup;
+import com.olejarczykjakub.cv_api.entity.Technology;
 import com.olejarczykjakub.cv_api.service.TechnologyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ public class TechnologyController {
   private final TechnologyService service;
 
   @GetMapping("/get-all")
-  public ResponseEntity<ArrayList<TechnologyGroup>> getAll() {
+  public ResponseEntity<ArrayList<Technology>> getAll() {
     return ResponseEntity.ok().body(service.getAll());
   }
 }

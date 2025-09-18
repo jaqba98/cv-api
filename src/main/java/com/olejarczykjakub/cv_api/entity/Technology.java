@@ -34,13 +34,6 @@ public class Technology {
 
   @ManyToOne
   @JoinColumn(
-    name = "technology_group_id",
-    nullable = false
-  )
-  private TechnologyGroup technologyGroupId;
-
-  @ManyToOne
-  @JoinColumn(
     name = "technology_category_id",
     nullable = false
   )

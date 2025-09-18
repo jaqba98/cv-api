@@ -20,7 +20,8 @@ public class TechnologyGroup {
   @Column(
     name = "technology_group_name",
     nullable = false,
-    length = 100
+    unique = true,
+    length = 50
   )
   private String technologyGroupName;
 
